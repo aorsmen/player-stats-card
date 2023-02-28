@@ -1,0 +1,141 @@
+@import "inc/variables";
+@import "inc/mixins";
+@import "inc/reset";
+
+.wrapper{
+  max-width: 300px;
+  margin: 50px auto;
+}
+
+// Dropdown
+.dropdown{
+  $border: 1px;
+  $padding-inline: 15px;
+  $padding-block: 12px;
+  $height: 40px + ($border * 2);
+
+  position: relative;
+  background-color: $white;
+  padding: $padding-block $padding-inline;
+  z-index: 1;
+  &__trigger{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+    height: $height;
+    border: $border solid $white;
+    background-color: $gray;
+    padding-inline: 14px;
+    font-size: 1rem;
+    &::after{
+      content: "";
+      display: block;
+      width: 17px;
+      height: 11px;
+      background: no-repeat url(#{$images-path + 'dropdown_caret.png'});
+    }
+  }
+  &__menu{
+    position: absolute;
+    left: $padding-inline + $border;
+    top: $padding-block + $height;
+    width: calc(100% - 32px);
+    background-color: $gray;
+    display: none;
+  }
+  &__option{
+    display: flex;
+    align-items: center;
+    padding-inline: 14px;
+    background-color: $gray;
+    transition: all .333s;
+    color: $text-color-dark;
+    text-decoration: none;
+    height: $height;
+    &:hover{
+      background-color: darken($gray, 25%);
+    }
+  }
+  &.show{
+    .dropdown{
+      &__menu{
+        display: block;
+      }
+      &__trigger{
+        &::after{
+          transform: scale(-1);
+        }
+      }
+    }
+  }
+}
+
+// Player Card
+.card{
+  background-color: $bg-color-light;
+  &__header{
+    display: flex;
+    align-items: flex-end;
+    background: right 5px no-repeat url(#{$images-path + 'card_bg.png'});
+    height: 226px;
+  }
+  &__media{
+    flex: 1;
+    max-width: 150px;
+    margin-left: 15px;
+  }
+  &__body{
+    background-color: $bg-color-primary;
+    color: $text-color-light;
+    padding: 1.25rem 1rem 1rem;
+    position: relative;
+  }
+  &__logo{
+    background-image: url($sprite-path);
+    width: $badge-width;
+    height: $badge-height;
+    overflow: hidden;
+    border-radius: 100%;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    transform: scale(.8) translateY(-50%);
+    transform-origin: top right;
+
+    // Generate team classes
+    @at-root {
+      @each $key, $val in $badge-data{
+        .team-#{$key}{
+          @include getBadge($key);
+        }
+      }
+    }
+  }
+  &__name{
+    font-size: 1.3rem;
+    max-width: 180px;
+  }
+  &__position{
+    margin-top: 0.625rem;
+  }
+  &__details{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    &-row{
+      flex: 0 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: 10px;
+      background-color: $gray;
+      color: $text-color-dark;
+      b{
+        font-weight: 700;
+      }
+    }
+  }
+}

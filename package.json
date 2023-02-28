@@ -1,0 +1,31 @@
+{
+  "name": "players",
+  "description": "Player stat cards",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "latest",
+    "del": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "latest",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-terser": "latest",
+    "sass": "latest"
+  },
+  "browserslist": [
+    "last 1 version",
+    "last 2 years and > 1%",
+    "not dead"
+  ]
+}

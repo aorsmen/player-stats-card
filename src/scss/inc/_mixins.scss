@@ -1,0 +1,22 @@
+@use 'sass:math';
+
+// Get badge from the sprite
+@mixin getBadge($id){
+  @if map-has-key($badge-data, $id) {
+    $pos: map-get($badge-data, $id);
+    $row: $pos % $sprite-rows;
+    $col: math.floor(math.div($pos, $sprite-rows));
+
+    @if($row == 0){
+      $row: $sprite-rows - 1;
+    }
+
+    @if($col != 0){
+      $col: $col - 1;
+    }
+    
+    background-position: -#{$col * $badge-width} -#{$row * $badge-height};
+  }@else{
+    @warn "The key ´#{$id} is not present in the map...";
+  }
+}
